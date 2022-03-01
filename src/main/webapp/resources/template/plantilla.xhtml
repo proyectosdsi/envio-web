@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>MINEDUCYT - Envío de correo masivos</title>
+        
+        <ui:insert name="head"/>
+        
+        <h:outputScript name="funciones.js" library="js" />
+    </h:head>
+
+    <h:body styleClass="landing-body">
+
+        <div class="landing-wrapper">
+            <div id="header">
+                <div class="header-top">
+                    <h:panelGrid columns="2" style="width: 100%" columnClasses="col4,col8_left">
+                        <h:graphicImage name="images/mined-logo.svg" style="height:100px; margin-right: 20px; font-family: Bembo Std;"/>
+                        <h1 style="font-family: Bembo Std !important;">Envío de Correos Masivos</h1>
+                    </h:panelGrid>
+
+                    <ui:insert name="titulo"/>
+                </div>
+            </div>
+
+            <h:form prependId="false">
+                <p:messages id="growl" closable="true" escape="false" showDetail="true">
+                    <p:autoUpdate />
+                </p:messages>
+                <ui:insert name="contenido"/>
+
+                <p:ajaxStatus>
+                    <f:facet name="default">
+
+                    </f:facet>
+                    <f:facet name="start">
+                        <div id="div_modal" class="layout-content ui-widget-overlay ui-dialog-mask" style="z-index: 1000;"></div>
+                        <div id="ajax_gif" class="ui-tooltip-text ui-corner-all ui-shadow">
+                            <i class="fa fa-refresh fa-spin ajax-loader" aria-hidden="true" 
+                               style="color: #349ffb; font-size: 36px; display: block;  position: relative;  top: 18%;  transform: translateY(-18%);"></i>
+                        </div>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <h:outputText value="" />
+                    </f:facet>
+                </p:ajaxStatus>
+            </h:form>
+        </div>
+
+
+
+        <h:outputStylesheet name="main.css" library="css" />
+        <h:outputStylesheet name="css/animate.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/components.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="paradise-layout" />
+    </h:body>
+
+</html>

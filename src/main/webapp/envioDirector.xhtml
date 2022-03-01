@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>MINEDUCYT - Envío de correo masivos</title>
+
+        <ui:insert name="head"/>
+
+        <script type="text/javascript">
+        </script>
+
+        <h:outputScript name="funciones.js" library="js" />
+    </h:head>
+
+    <h:body styleClass="landing-body" >
+
+        <div class="landing-wrapper">
+            <div id="header">
+                <div class="header-top">
+                    <h:panelGrid columns="2" style="width: 100%" columnClasses="col4,col8_left">
+                        <h:graphicImage name="images/mined-logo.svg" style="height:100px; margin-right: 20px; font-family: Bembo Std;"/>
+                        <h1 style="font-family: Bembo Std !important;">Envío de Correos Masivos</h1>
+                    </h:panelGrid>
+
+                    <div id="pricing" class="header-top">
+                        <div class="ui-g ui-fluid">
+                            <h:form prependId="false">
+                                <p:messages id="growl" closable="true" escape="false" showDetail="true">
+                                    <p:autoUpdate />
+                                </p:messages>
+
+                                <p:outputPanel id="outPrincipal" style="width: 900px;">
+                                    <p:outputPanel style="width: 900px"> 
+                                        <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-2 col2_left, ui-g-12 ui-md-10 col10_left"
+                                                     style="margin: 0 auto; "
+                                                     styleClass="form-group ui-panelgrid-blank" layout="grid">
+                                            <p:outputLabel value="De:"/>
+                                            <p:outputLabel value="#{envioDirectorView.remitente}" style="font-weight: bold;"/>
+                                            <p:outputLabel value="Título del mensaje"/>
+                                            <p:inputText id="txtTitulo" value="#{envioDirectorView.titulo}"/>
+                                        </p:panelGrid>
+
+                                        <p:panelGrid columns="1" columnClasses="ui-g-12 "
+                                                     style="margin: 0 auto; "
+                                                     styleClass="form-group ui-panelgrid-blank" layout="grid">
+                                            <p:outputPanel>
+                                                <h:outputText value="Mensaje" style="float: left;"/>
+                                            </p:outputPanel>
+                                            <p:textEditor id="txtMensaje" value="#{envioDirectorView.mensaje}" allowLinks="true" 
+                                                          height="200" style="width: 100%; margin-bottom:10px"
+                                                          placeholder="Ingrese el mensaje a enviar" secure="false">
+                                                <f:facet name="toolbar">
+                                                    <span class="ql-formats">
+                                                        <button class="ql-bold"></button>
+                                                        <button class="ql-italic"></button>
+                                                        <button class="ql-underline"></button>
+                                                        <button class="ql-strike"></button>
+                                                        <button class="ql-link"></button>
+                                                        <button class="ql-image"></button>
+                                                    </span>
+                                                    <span class="ql-formats">
+                                                        <select class="ql-font"></select>
+                                                        <select class="ql-size"></select>
+                                                    </span>
+                                                </f:facet>
+                                            </p:textEditor>
+                                        </p:panelGrid>
+
+                                        <br/>
+                                        <p:panelGrid columns="3" columnClasses="ui-g-5, ui-g-2, ui-g-5" style="margin: 0 auto; text-align: center; width: 360px;"  styleClass="form-group ui-panelgrid-blank" layout="grid">
+                                            <p:commandButton id="btnEnviar" value="Enviar" 
+                                                             action="#{envioDirectorView.validarFormulario()}" style="width: 200px;" />
+                                            <p:spacer/>
+                                            <p:commandButton id="btnCerrar" widgetVar="btnCerrar" value="Cerrar"
+                                                             style="width: 200px;" action="#{envioDirectorView.logout()}"/>
+                                        </p:panelGrid>
+
+                                        <p:panel visible="false">
+                                            <p:commandButton id="btnSend" widgetVar="btnSend" value="enviar" action="#{envioDirectorView.enviarCorreos()}"
+                                                             update="outPrincipal"/>
+                                        </p:panel>
+                                    </p:outputPanel>
+                                </p:outputPanel>
+
+                                <p:inputText value="#{envioDirectorView.codigoDepartamento}" />
+                                <p:inputText value="#{envioDirectorView.idEnvio}" />
+                                <br/>
+                                <br/>
+                                <p:inputText value="#{envioDirectorView.idInicio}" />
+                                <p:inputText value="#{envioDirectorView.idFin}" />
+                                <p:commandButton value="separar" action="#{envioDirectorView.separar()}" />
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h:outputStylesheet name="main.css" library="css" />
+        <h:outputStylesheet name="css/animate.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/components.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="paradise-layout" />
+    </h:body>
+
+</html>      

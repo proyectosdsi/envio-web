@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>MINEDUCYT - Envío de correo masivos</title>
+
+        <ui:insert name="head"/>
+
+        <script type="text/javascript">
+        </script>
+
+        <h:outputScript name="funciones.js" library="js" />
+    </h:head>
+
+    <h:body styleClass="landing-body" >
+
+        <div class="landing-wrapper">
+            <div id="header">
+                <div class="header-top">
+                    <h:panelGrid columns="2" style="width: 100%" columnClasses="col4,col8_left">
+                        <h:graphicImage name="images/mined-logo.svg" style="height:100px; margin-right: 20px; font-family: Bembo Std;"/>
+                        <h1 style="font-family: Bembo Std !important;">Envío de Correos Masivos</h1>
+                    </h:panelGrid>
+
+                    <div id="pricing" class="header-top">
+                        <div class="ui-g ui-fluid">
+                            <h:form prependId="false">
+                                <p:messages id="growl" closable="true" escape="false" showDetail="true">
+                                    <p:autoUpdate />
+                                </p:messages>
+
+                                <p:outputPanel id="outPrincipal" style="width: 900px;">
+                                    <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-2 col2_left, ui-g-12 ui-md-10 col10_left"
+                                                 style="margin: 0 auto; "
+                                                 styleClass="form-group ui-panelgrid-blank" layout="grid">
+                                        <p:inputText value="#{envioView.idEnvio}" />
+                                        <p:commandButton id="btnSendProceso" widgetVar="btnSend" value="enviar" action="#{envioView.enviarProcesoPendiente()}"
+                                                         update="outPrincipal"/>
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h:outputStylesheet name="main.css" library="css" />
+        <h:outputStylesheet name="css/animate.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/components.css" library="paradise-layout" />
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="paradise-layout" />
+    </h:body>
+
+</html>      
